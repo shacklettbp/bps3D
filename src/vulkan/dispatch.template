@@ -1,0 +1,108 @@
+device:
+- vkCreateCommandPool
+- vkDestroyCommandPool
+- vkGetDeviceQueue2
+- vkCreateImage
+- vkDestroyImage
+- vkGetImageMemoryRequirements
+- vkGetImageSparseMemoryRequirements
+- vkQueueBindSparse
+- vkAllocateMemory
+- vkFreeMemory
+- vkBindImageMemory
+- vkCreateImageView
+- vkDestroyImageView
+- vkCreateRenderPass
+- vkDestroyRenderPass
+- vkCreateFramebuffer
+- vkDestroyFramebuffer
+- vkCreatePipelineLayout
+- vkDestroyPipelineLayout
+- vkCreatePipelineCache
+- vkDestroyPipelineCache
+- vkCreateComputePipelines
+- vkCreateGraphicsPipelines
+- vkDestroyPipeline
+- vkCreateShaderModule
+- vkDestroyShaderModule
+- vkCreateBuffer
+- vkDestroyBuffer
+- vkGetBufferMemoryRequirements
+- vkBindBufferMemory
+- vkMapMemory
+- vkUnmapMemory
+- vkFlushMappedMemoryRanges
+- vkAllocateCommandBuffers
+- vkFreeCommandBuffers
+- vkBeginCommandBuffer
+- vkEndCommandBuffer
+- vkCmdCopyBuffer
+- vkCmdFillBuffer
+- vkQueueSubmit
+- vkCreateFence
+- vkDestroyFence
+- vkWaitForFences
+- vkResetFences
+- vkCmdPipelineBarrier
+- vkCmdCopyBufferToImage
+- vkCmdCopyImageToBuffer
+- vkCmdBlitImage
+- vkCreateSemaphore
+- vkDestroySemaphore
+- vkCreateDescriptorSetLayout
+- vkDestroyDescriptorSetLayout
+- vkCreateDescriptorPool
+- vkDestroyDescriptorPool
+- vkResetDescriptorPool
+- vkAllocateDescriptorSets
+- vkFreeDescriptorSets
+- vkUpdateDescriptorSets
+- vkCreateSampler
+- vkDestroySampler
+- vkCmdBindDescriptorSets
+- vkCmdBindPipeline
+- vkCmdBindVertexBuffers
+- vkCmdBindIndexBuffer
+- vkCmdDispatch
+- vkCmdDrawIndexed
+- vkCmdDrawIndexedIndirectCountKHR
+- vkCmdBeginRenderPass
+- vkCmdEndRenderPass
+- vkCmdPushConstants
+- vkCmdSetViewport
+- vkGetMemoryFdKHR
+- vkGetSemaphoreFdKHR
+- need_present:
+    - vkCreateSwapchainKHR
+    - vkGetSwapchainImagesKHR
+    - vkAcquireNextImageKHR
+    - vkQueuePresentKHR
+- need_rt:
+    - vkCreateAccelerationStructureKHR
+    - vkGetAccelerationStructureBuildSizesKHR
+    - vkGetAccelerationStructureDeviceAddressKHR
+    - vkGetBufferDeviceAddressKHR
+    - vkCmdBuildAccelerationStructuresKHR
+    - vkDestroyAccelerationStructureKHR
+    - vkCreateRayTracingPipelinesKHR
+    - vkGetRayTracingShaderGroupHandlesKHR
+    - vkCmdTraceRaysKHR
+    
+
+instance:
+- vkEnumeratePhysicalDevices
+- vkGetPhysicalDeviceFeatures2
+- vkGetPhysicalDeviceProperties
+- vkGetPhysicalDeviceProperties2
+- vkGetPhysicalDeviceFormatProperties2
+- vkGetPhysicalDeviceMemoryProperties2
+- vkGetPhysicalDeviceQueueFamilyProperties2
+- vkGetInstanceProcAddr
+- vkCreateDevice
+- vkDestroyInstance
+- need_present:
+    - vkDestroySurfaceKHR
+    - vkGetPhysicalDeviceSurfaceCapabilitiesKHR
+    - vkGetPhysicalDeviceSurfaceFormatsKHR
+    - vkGetPhysicalDeviceSurfacePresentModesKHR
+    - vkGetPhysicalDeviceSurfaceSupportKHR
