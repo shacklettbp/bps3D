@@ -113,7 +113,7 @@ static glm::vec2 cursorPosition(GLFWwindow *window)
 int main(int argc, char *argv[])
 {
     if (argc < 2) {
-        cerr << argv[0] << " scene [spp] [depth] [verbose]" << endl;
+        cerr << argv[0] << " scene [verbose]" << endl;
         exit(EXIT_FAILURE);
     }
 
@@ -138,7 +138,7 @@ int main(int argc, char *argv[])
 
     bool show_camera = false;
     if (argc > 2) {
-        if (!strcmp(argv[1], "--cam")) {
+        if (!strcmp(argv[2], "--cam")) {
             show_camera = true;
         }
     }
@@ -240,7 +240,8 @@ int main(int argc, char *argv[])
         if (show_camera) {
             cout << "E: " << glm::to_string(cam.eye) << "\n"
                  << "F: " << glm::to_string(cam.fwd) << "\n"
-                 << "U: " << glm::to_string(cam.up) << "\n";
+                 << "U: " << glm::to_string(cam.up) << "\n"
+                 << "R: " << glm::to_string(cam.right) << "\n";
         }
 
         uint32_t new_frame = renderer.render(envs.data());
