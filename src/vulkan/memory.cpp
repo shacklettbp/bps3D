@@ -452,7 +452,7 @@ HostBuffer MemoryAllocator::makeHostBuffer(VkDeviceSize num_bytes,
     REQ_VK(dev.dt.bindBufferMemory(dev.hdl, buffer, memory, 0));
 
     void *mapped_ptr;
-    REQ_VK(dev.dt.mapMemory(dev.hdl, memory, 0, num_bytes, 0, &mapped_ptr));
+    REQ_VK(dev.dt.mapMemory(dev.hdl, memory, 0, reqs.size, 0, &mapped_ptr));
 
     VkMappedMemoryRange range;
     range.sType = VK_STRUCTURE_TYPE_MAPPED_MEMORY_RANGE;

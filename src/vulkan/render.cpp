@@ -1067,8 +1067,8 @@ uint32_t VulkanBackend::render(const Environment *envs)
     init_barrier.srcAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;
     init_barrier.dstAccessMask =
         VK_ACCESS_SHADER_READ_BIT | VK_ACCESS_SHADER_WRITE_BIT;
-    init_barrier.srcQueueFamilyIndex = VK_NULL_HANDLE;
-    init_barrier.dstQueueFamilyIndex = VK_NULL_HANDLE;
+    init_barrier.srcQueueFamilyIndex = 0;
+    init_barrier.dstQueueFamilyIndex = 0;
     init_barrier.buffer = indirect_draw_buffer_.buffer;
     init_barrier.offset = 0;
     init_barrier.size = VK_WHOLE_SIZE;
@@ -1196,8 +1196,8 @@ uint32_t VulkanBackend::render(const Environment *envs)
         buffer_barrier.pNext = nullptr;
         buffer_barrier.srcAccessMask = VK_ACCESS_SHADER_WRITE_BIT;
         buffer_barrier.dstAccessMask = VK_ACCESS_INDIRECT_COMMAND_READ_BIT;
-        buffer_barrier.srcQueueFamilyIndex = VK_NULL_HANDLE;
-        buffer_barrier.dstQueueFamilyIndex = VK_NULL_HANDLE;
+        buffer_barrier.srcQueueFamilyIndex = 0;
+        buffer_barrier.dstQueueFamilyIndex = 0;
         buffer_barrier.buffer = indirect_draw_buffer_.buffer;
         buffer_barrier.offset = 0;
         buffer_barrier.size = VK_WHOLE_SIZE;

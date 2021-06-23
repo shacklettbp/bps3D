@@ -3,6 +3,7 @@
 #include <bps3D_core/shader.hpp>
 #include <bps3D_core/scene.hpp>
 
+#include <optional>
 #include <vector>
 
 namespace bps3D {
