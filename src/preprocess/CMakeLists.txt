@@ -10,6 +10,8 @@ target_link_libraries(bps3D_preprocess
         bps3D_core
         meshoptimizer
         simdjson
+    PUBLIC
+        glm
 )
 
 target_include_directories(bps3D_preprocess

@@ -28,10 +28,6 @@ set(THREADS_PREFER_PTHREAD_FLAG TRUE)
 find_package(Threads REQUIRED)
 find_package(CUDAToolkit REQUIRED)
 
-if (NOT USE_BUNDLED)
-    find_package(glm 0.9.9.8 QUIET)
-ENDIF()
-
 add_subdirectory(external)
 
 add_compile_options(-Wall -Wextra -Wshadow)

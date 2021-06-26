@@ -1,9 +1,6 @@
-IF (NOT glm_FOUND OR USE_BUNDLED)
-    message(STATUS "Using bundled GLM")
-    add_library(glm INTERFACE)
-    target_include_directories(glm SYSTEM
-        INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/glm")
-ENDIF()
+add_library(glm INTERFACE)
+target_include_directories(glm SYSTEM
+    INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/glm")
 
 set(MESHOPT_BUILD_SHARED_LIBS ON)
 add_subdirectory(meshoptimizer EXCLUDE_FROM_ALL)
