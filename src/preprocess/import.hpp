@@ -11,16 +11,19 @@ namespace SceneImport {
 
 template <typename VertexType>
 struct Mesh {
+    std::string name;
     std::vector<VertexType> vertices;
     std::vector<uint32_t> indices;
 };
 
 struct Material {
+    std::string name;
     std::string albedoName;
     glm::vec3 baseAlbedo;
     float roughness;
 
-    static Material make(const std::string_view albedo_name,
+    static Material make(const std::string_view material_name,
+                         const std::string_view albedo_name,
                          const glm::vec3 &color,
                          float roughness);
 };

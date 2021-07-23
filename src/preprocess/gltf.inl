@@ -229,7 +229,17 @@ GLTFScene gltfLoad(filesystem::path gltf_path) noexcept
                 roughness = 1;
             }
 
+            string_view material_name_view;
+            string material_name;
+            auto name_err = material["name"].get(material_name_view);
+            if (name_err) {
+                material_name = to_string(scene.meshes.size());
+            } else {
+                material_name = material_name_view;
+            }
+
             scene.materials.push_back(GLTFMaterial {
+                string(material_name),
                 static_cast<uint32_t>(tex_idx),
                 base_color,
                 static_cast<float>(metallic),
@@ -242,6 +252,15 @@ GLTFScene gltfLoad(filesystem::path gltf_path) noexcept
             if (prims.size() != 1) {
                 cerr << "GLTF loading '" << gltf_path << "' failed: "
                      << "Only single primitive meshes supported" << endl;
+            }
+
+            string_view mesh_name_view;
+            string mesh_name;
+            auto name_err = mesh["name"].get(mesh_name_view);
+            if (name_err) {
+                mesh_name = to_string(scene.meshes.size());
+            } else {
+                mesh_name = mesh_name_view;
             }
 
             simdjson::dom::element prim = prims.at(0);
@@ -278,6 +297,7 @@ GLTFScene gltfLoad(filesystem::path gltf_path) noexcept
             }
 
             scene.meshes.push_back(GLTFMesh {
+                move(mesh_name),
                 position_idx,
                 normal_idx,
                 uv_idx,
@@ -484,7 +504,7 @@ vector<MaterialType> gltfParseMaterials(const GLTFScene &scene,
             }
         }
 
-        materials.push_back(MaterialType::make(tex_name, gltf_mat.baseColor,
+        materials.push_back(MaterialType::make(gltf_mat.name, tex_name, gltf_mat.baseColor,
                                                gltf_mat.roughness));
     }
 
@@ -512,7 +532,7 @@ template <typename T>
 struct HasColor<T, decltype((void)T::color, 0)> : std::true_type {};
 
 template <typename VertexType>
-pair<vector<VertexType>, vector<uint32_t>> gltfParseMesh(
+tuple<string, vector<VertexType>, vector<uint32_t>> gltfParseMesh(
     const GLTFScene &scene,
     uint32_t mesh_idx)
 {
@@ -628,7 +648,7 @@ pair<vector<VertexType>, vector<uint32_t>> gltfParseMesh(
         vertices.push_back(vert);
     }
 
-    return {move(vertices), move(indices)};
+    return {mesh.name, move(vertices), move(indices)};
 }
 
 std::vector<InstanceProperties> gltfParseInstances(
@@ -679,10 +699,11 @@ SceneDescription<VertexType, MaterialType> parseGLTF(
 
     for (uint32_t mesh_idx = 0; mesh_idx < raw_scene.meshes.size();
          mesh_idx++) {
-        auto [vertices, indices] =
+        auto [mesh_name, vertices, indices] =
             gltfParseMesh<VertexType>(raw_scene, mesh_idx);
 
         geometry.push_back({
+            move(mesh_name),
             move(vertices),
             move(indices),
         });

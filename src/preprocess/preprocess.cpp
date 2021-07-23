@@ -232,6 +232,7 @@ optional<ProcessedMesh<VertexType>> processMesh(
 
     return ProcessedMesh<VertexType> {
         {
+            orig_mesh.name,
             move(new_vertices),
             move(new_indices),
         },
@@ -353,6 +354,19 @@ void ScenePreprocessor::dump(string_view out_path_name)
     filesystem::path out_path(out_path_name);
     string basename = out_path.filename();
     basename.resize(basename.rfind('.'));
+
+    // Write this out to some file derived from basename instead
+    cout << "Material IDs" << endl;
+    for (int mat_idx = 0; mat_idx < (int)scene_data_->desc.materials.size(); mat_idx++) {
+        const auto &mat = scene_data_->desc.materials[mat_idx];
+        cout << mat.name << " " << mat_idx << endl;
+    }
+
+    cout << "Mesh IDs" << endl;
+    for (int mesh_idx = 0; mesh_idx < (int)processed_geometry.meshes.size(); mesh_idx++) {
+        const auto &mesh = processed_geometry.meshes[mesh_idx];
+        cout << mesh.name << " " << mesh_idx << endl;
+    }
 
     ofstream out(out_path, ios::binary);
     auto write = [&](auto val) {

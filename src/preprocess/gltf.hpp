@@ -53,6 +53,7 @@ struct GLTFTexture {
 };
 
 struct GLTFMaterial {
+    std::string name;
     uint32_t textureIdx;
     glm::vec3 baseColor;
     float metallic;
@@ -60,6 +61,7 @@ struct GLTFMaterial {
 };
 
 struct GLTFMesh {
+    std::string name;
     std::optional<uint32_t> positionIdx;
     std::optional<uint32_t> normalIdx;
     std::optional<uint32_t> uvIdx;
@@ -98,7 +100,7 @@ template <typename MaterialType>
 std::vector<MaterialType> gltfParseMaterials(const GLTFScene &scene);
 
 template <typename VertexType>
-std::pair<std::vector<VertexType>, std::vector<uint32_t>> gltfParseMesh(
+std::tuple<std::string, std::vector<VertexType>, std::vector<uint32_t>> gltfParseMesh(
     const GLTFScene &scene,
     uint32_t mesh_idx);
 
